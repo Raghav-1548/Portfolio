@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raghav - Home Page</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        body, html {
+            font-family: 'Poppins', Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+        }
+
+        section {
+            height: 100vh;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 60px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 18px;
+            transition: color 0.3s ease, box-shadow 0.3s ease, text-shadow 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #ffffff; 
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5), 0 0 30px rgba(0, 255, 255, 0.3);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(144, 238, 144, 0.1);
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        nav a:hover::before {
+            opacity: 1;
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .text-content {
+            flex: 1;
+            padding-right: 60px;
+        }
+
+        h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: #8a2be2;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 22px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .social-icons a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #ffffff; 
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5), 0 0 30px rgba(0, 255, 255, 0.3);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        .contact-btn {
+            background-color: rgb(30, 212, 233);
+            color: #000000;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            color: #ffffff; 
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5), 0 0 30px rgba(0, 255, 255, 0.3);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+            
+        }
+
+        .image-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .avatar {
+            width: 600px;
+            height: auto;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            background: none;
+            box-shadow: none;
+        }
+
+        .skills-title {
+            text-align: center;
+            font-size: 48px;
+            color: #ffffff;
+            font-weight: bold;
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .skill {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .skill-image {
+            flex: 1;
+            padding-right: 40px;
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .skill-image img {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+        }
+
+        .skill-content {
+            flex: 1;
+            transform: translateX(100%);
+            transition: transform 0.5s ease;
+        }
+
+        .skill h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .skill-details {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .skill-icons {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .skill-icons img {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-icons img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+        }
+
+        .skill-icon-name {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(26, 26, 26, 0.8);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+        }
+
+        .skill-icon-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .skill-icon-wrapper:hover .skill-icon-name {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-5px);
+        }
+
+        .quote {
+            text-align: center;
+            font-size: 12px;
+            margin-top: 30px;
+            opacity: 0.7;
+        }
+
+        section.active .skills-title,
+        section.active .skill {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section.active .skill-image,
+        section.active .skill-content {
+            transform: translateX(0);
+        }
+
+        #skills .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        #skills .skill {
+            margin-top: -40px; /* Adjust this value to fine-tune the vertical position */
+        }
+        .futuristic-text {
+            font-family: 'Oxanium', cursive;
+            font-size: 18px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #fff;
+            text-shadow: 
+                0 0 5px #0ff,
+                0 0 10px #0ff,
+                0 0 20px #0ff,
+                0 0 40px #0ff;
+            animation: neon-pulse 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes neon-pulse {
+            from {
+                text-shadow: 
+                    0 0 5px #0ff,
+                    0 0 10px #0ff,
+                    0 0 20px #0ff,
+                    0 0 40px #0ff;
+            }
+            to {
+                text-shadow: 
+                    0 0 5px #f0f,
+                    0 0 10px #f0f,
+                    0 0 20px #f0f,
+                    0 0 40px #f0f;
+            }
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: opacity 0.3s ease, background-color 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .scroll-to-top:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <section id="home">
+            <div class="content-wrapper">
+                <header>
+                    <!-- <div class="logo">Thinngs happen,<br>If you allow things to happen!</div> -->
+                    <div class="futuristic-text">Things happen,<br> If you allow things to happen!</div>
+                    <nav>
+                        <a href="#home">Home</a>
+                        <a href="#skills">Skills</a>
+                        <a href="Education.html">Education</a>
+                        <a href="#" id="resume-link">Resume</a>
+                        <a href="Projects.html">Projects</a>
+                    </nav>
+                </header>
+                <div class="content">
+                    <div class="text-content">
+                        <h1>Hi There! 👋</h1>
+                        <p>
+                            I'm <span class="highlight">
+                              <span style="font-size: medium; color: rgb(30, 212, 233);">Sanjay</span>
+                              <span style="font-size: larger; color: rgb(30, 212, 233);">Hari Raghava</span>
+                            </span>.
+                            <br>Machine Learning, Native Mobile Developer.<br>I'll get the job done.
+                          </p>                          
+                        <div class="social-icons">
+                            <a href="https://github.com/Raghav-1548" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/raghav1548" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://x.com/RaghavXKrewsUp" aria-label="X"><img src="X312.png" alt="X" style="width: 50px; height: 50px;"></a>
+                        </div>
+                        <button class="contact-btn" onclick="window.location.href='Contact.html'">Contact Me</button>
+
+                    </div>
+                    <div class="image-content">
+                        <div class="avatar">
+                            <img src="avatar.png" alt="Avatar">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="content-wrapper">
+                <h1 class="skills-title">Skills</h1>
+                <div class="skill">
+                    <div class="skill-image">
+                        <img src="ML1-rem.png" alt="Machine Learning Developer">
+                    </div>
+                    <div class="skill-content">
+                        <h2>Machine Learning Developer</h2>
+                        <div class="skill-details">
+                            <p>⚡ Developing and training ML models using Python, TensorFlow, and PyTorch.</p>
+                            <p>⚡ Data preprocessing and feature engineering for model optimization.</p>
+                            <p>⚡ Implementing algorithms like decision trees, SVMs, and neural networks.</p>
+                            <p>⚡ Tuning models for better accuracy and performance.</p>
+                        </div>
+                        <div class="skill-icons">
+                            <div class="skill-icon-wrapper">
+                                <img src="Tensorflow_logo.svg" alt="TensorFlow">
+                                <span class="skill-icon-name">TensorFlow</span>
+                            </div>
+                            <div class="skill-icon-wrapper">
+                                <img src="pytorch-rem.png" alt="PyTorch">
+                                <span class="skill-icon-name">PyTorch</span>
+                            </div>
+                            <div class="skill-icon-wrapper">
+                                <img src="Python-logo-notext.svg" alt="Python">
+                                <span class="skill-icon-name">Python</span>
+                            </div>
+                            <div class="skill-icon-wrapper">
+                                <img src="Scikit_learn_logo_small.svg" alt="Scikit-Learn">
+                                <span class="skill-icon-name">Scikit-Learn</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="mobile-dev">
+            <div class="content-wrapper">
+                <div class="skill">
+                    <div class="skill-image">
+                        <img src="MobileDev-rem.png" alt="Mobile App Development">
+                    </div>
+                    <div class="skill-content">
+                        <h2>Mobile App Development</h2>
+                        <div class="skill-details">
+                            <p>⚡ Building responsive and interactive mobile applications.</p>
+                            <p>⚡ Developing cross-platform apps using Flutter, React Native.</p>
+                            <p>⚡ Implementing native functionalities and optimizing performance.</p>
+                            <p>⚡ Integration with backend services and APIs.</p>
+                        </div>
+
+                        <div class="skill-icons">
+                            <div class="skill-icon-wrapper">
+                                <img src="Flut.png" alt="Flutter">
+                                <span class="skill-icon-name">Flutter</span>
+                            </div>
+                            <div class="skill-icon-wrapper">
+                                <img src="React.png" alt="React">
+                                <span class="skill-icon-name">React</span>
+                            </div>
+                            <div class="skill-icon-wrapper">
+                                <img src="Node.png" alt="Node.js">
+                                <span class="skill-icon-name">Node.js</span>
+                            </div>
+                            <div class="skill-icon-wrapper">
+                                <img src="exrpress.png" alt="Express.js">
+                                <span class="skill-icon-name">Express.js</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        const container = document.querySelector('.container');
+        let isScrolling = false;
+
+        container.addEventListener('scroll', () => {
+            if (!isScrolling) {
+                window.requestAnimationFrame(() => {
+                    const sections = document.querySelectorAll('section');
+                    const scrollPosition = container.scrollTop;
+
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop;
+                        const sectionHeight = section.offsetHeight;
+
+                        if (scrollPosition >= sectionTop - sectionHeight / 3) {
+                            section.classList.add('active');
+                        } else {
+                            section.classList.remove('active');
+                        }
+                    });
+
+                    isScrolling = false;
+                });
+            }
+            isScrolling = true;
+        });
+
+        const container1 = document.querySelector('.container');
+        const scrollToTopBtn = document.querySelector('.scroll-to-top');
+
+        function toggleScrollToTopBtn() {
+            if (container1.scrollTop > 200) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        }
+
+        function scrollToTop() {
+            container1.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        container1.addEventListener('scroll', toggleScrollToTopBtn);
+        scrollToTopBtn.addEventListener('click', scrollToTop);
+
+        // New code for the resume link
+        document.getElementById('resume-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.open('Sanjay_Hari_Raghava-Resume.pdf', '_blank');
+        });
+    </script>
+</body>
+</html>

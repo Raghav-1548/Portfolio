@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raghav - Projects</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --card-bg: #2a2a2a;
+            --glow-color: #8a2be2;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px 0;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin-left: 30px;
+            font-size: 18px;
+            transition: color 0.3s ease, box-shadow 0.3s ease, text-shadow 0.3s ease;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .navbar a:hover {
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5), 0 0 30px rgba(0, 255, 255, 0.3);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        .navbar a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(144, 238, 144, 0.1);
+            border-radius: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .navbar a:hover::before {
+            opacity: 1;
+        }
+
+        .scroll-info {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #777;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            gap: 40px;
+        }
+
+        .project-image {
+            width: 400px;
+            height: 250px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-info {
+            flex: 1;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 1em;
+            color: #bbb;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+            justify-content: center;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card:hover {
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5), 0 0 30px rgba(0, 255, 255, 0.3);
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        .project-card h3 {
+            font-size: 1.3em;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-weight: 600;
+        }
+
+        .project-card p {
+            font-size: 0.8em;
+            color: #aaa;
+            flex-grow: 1;
+            overflow: hidden;
+        }
+
+        .tech-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tech-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .tech-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 1200px) {
+            .header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .project-image {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .project-info {
+                text-align: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <a href="index.html">Home</a>
+            <a href="index.html">Skills</a>
+            <a href="Education.html">Education</a>
+            <a href="resume.html" id="resume-link">Resume</a>
+            <a href="Projects.html">Projects</a>
+        </div>
+        <div class="header">
+            <div class="project-image">
+                <img src="pr3-rem.png" alt="Project Overview">
+            </div>
+            <div class="project-info">
+                <h1>Projects</h1>
+                <p>My projects utilize a wide range of cutting-edge technologies. There are several of these, ranging from side projects I work on for fun to college assignments. Here are a few things I'm especially proud of.</p>
+            </div>
+        </div>
+
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>DRIVE</h3>
+                <p>Digital Reality Immersive Vehicle Experience <br><br> ⚡Engineered a cross-platform AR Car Viewer using Flutter, integrating ARCore and ARKit for immersive 3D rendering.<br><br>⚡ Developed a custom gesture recognition system.</p>
+                <div class="tech-icons">
+                    <div class="tech-icon"><img src="Flut.png" alt="Tech 1"></div>
+                    <div class="tech-icon"><img src="Firebase.png" alt="Tech 2"></div>
+                    <div class="tech-icon"><img src="postgre.png" alt="Tech 3"></div>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>SkyShare</h3>
+                <p>⚡ Developed a Flutter-based mobile application enabling real-time luggage space sharing and matching algorithms for flight passengers. <br><br>⚡ Implemented RESTful APIs using Node.js and Express.js to handle user matching, booking management, and payment processing.</p>
+                <div class="tech-icons">
+                    <div class="tech-icon"><img src="Flut.png" alt="Tech 4"></div>
+                    <div class="tech-icon"><img src="Node.png" alt="Tech 5"></div>
+                    <div class="tech-icon"><img src="MongoDb.png" alt="Tech 6"></div>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>YARA</h3>
+                <p>⚡ Yet Another Rx Assistant. <br><br>⚡ Developed a responsive web platform integrating ML models for accurate disease prediction based on user symptoms.</p>
+                <div class="tech-icons">
+                    <div class="tech-icon"><img src="React.png" alt="Tech 7"></div>
+                    <div class="tech-icon"><img src="exrpress.png" alt="Tech 8"></div>
+                    <div class="tech-icon"><img src="Python-logo-notext.svg" alt="Tech 9"></div>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Coconut Disease Detection</h3>
+                <p>⚡ Developed a convolutional neural network (CNN) model to accurately detect coconut diseases from leaf images.<br><br>⚡  Improving classification accuracy by 25%.</p>
+                <div class="tech-icons">
+                    <div class="tech-icon"><img src="Python-logo-notext.svg" alt="Tech 10"></div>
+                    <div class="tech-icon"><img src="MongoDb.png" alt="Tech 11"></div>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Cancer Cell Detection</h3>
+                <p>⚡ Developed a cancer cell detection model leveraging advanced machine learning techniques for accurate and efficient classification.<br><br>⚡ Streamlined the process for early diagnosis and improved detection accuracy.</p>
+                <div class="tech-icons">
+                    <div class="tech-icon"><img src="Python-logo-notext.svg" alt="Tech 13"></div>
+                    <div class="tech-icon"><img src="postgre.png" alt="Tech 14"></div>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Ai-Desktop Assistant</h3>
+                <p>⚡ Built an AI-powered desktop assistant designed to automate tasks and enhance user productivity.<br><br>⚡ Integrated voice commands and machine learning for seamless interaction and personalized assistance.</p>
+                <div class="tech-icons">
+                    <div class="tech-icon"><img src="Python-logo-notext.svg" alt="Tech 15"></div>
+                    <div class="tech-icon"><img src="Flut.png" alt="Tech 16"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const projectCards = document.querySelectorAll(".project-card");
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+
+            projectCards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
